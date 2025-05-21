@@ -1,0 +1,6 @@
+framework module Pods_XvantageI_Infotech_UIKIT_XvantageI_Infotech_UIKITUITests {
+  umbrella header "Pods-XvantageI_Infotech-UIKIT-XvantageI_Infotech-UIKITUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -8,22 +8,31 @@
 import UIKit
 
 class LoginVC: UIViewController {
-
+    
+    //MARK: -IBOutlet
+    @IBOutlet weak var profileImg: UIImageView!
+    @IBOutlet weak var nameView: UIView!
+    @IBOutlet weak var nametxtField: UITextField!
+    @IBOutlet weak var emailView: UIView!
+    @IBOutlet weak var emailtxtField: UITextField!
+    @IBOutlet weak var phoneView: UIView!
+    @IBOutlet weak var phonenotxtField: UITextField!
+    @IBOutlet weak var saveBtn: UIButton!
+    
+    //MARK: -View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+      
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+    //MARK: Save IBAction
+    @IBAction func saveAction(_ sender: UIButton) {
+        
     }
-    */
+    
+    
 
 }
