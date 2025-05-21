@@ -6,3 +6,23 @@
 //
 
 import Foundation
+import CoreData
+import UIKit
+
+
+class CoreDataManager {
+    
+    
+    // MARK: - Core Data context
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private var context: NSManagedObjectContext!
+    
+    init() {
+        context = appDelegate.persistentContainer.viewContext
+    }
+    
+    
+    
+    
+    
+}
