@@ -22,7 +22,38 @@ class CoreDataManager {
     }
     
     
-    
+    func SaveUserData(name : String,email : String, phoneno : String,profileimg : UIImage?, completion: @escaping (Bool, String) -> Void) {
+        
+        let user = LoginData(context: context)
+        
+        user.name = name
+        user.email = email
+        user.phonenumber = phoneno
+        
+        
+        if let imageData = profileimg {
+            
+            if let pngImage = imageData.pngData() {
+                
+                user.profileimg = pngImage
+            }
+            
+            else if let jpgimage = imageData.jpegData(compressionQuality: 0.1) {
+                
+                user.profileimg = jpgimage
+            }
+        }
+        
+        
+        do {
+            try context.save()
+            completion(true, "User Data Successfully saved")
+        } catch {
+            print("Failed to save data: \(error)")
+            completion(false, "An error occurred while saving user data.")
+        }
+        
+    }
     
     
 }
