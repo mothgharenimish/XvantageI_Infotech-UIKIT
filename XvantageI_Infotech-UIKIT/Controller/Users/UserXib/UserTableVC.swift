@@ -8,10 +8,22 @@
 import UIKit
 
 class UserTableVC: UITableViewCell {
-
+    
+    
+    @IBOutlet weak var profileImg: UIImageView!
+    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var emailLbl: UILabel!
+    @IBOutlet weak var phonenoLbl: UILabel!
+    @IBOutlet weak var editView: UIView!
+    @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var deleteView: UIView!
+    @IBOutlet weak var deleteBtn: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.profileImg.layer.cornerRadius = self.profileImg.frame.size.height / 2
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

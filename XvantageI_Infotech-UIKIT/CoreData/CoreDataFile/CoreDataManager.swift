@@ -25,7 +25,7 @@ class CoreDataManager {
     func SaveUserData(name : String,email : String, phoneno : String,profileimg : UIImage?, completion: @escaping (Bool, String) -> Void) {
         
         let user = LoginData(context: context)
-        
+        print(user)
         user.name = name
         user.email = email
         user.phonenumber = phoneno
@@ -54,6 +54,17 @@ class CoreDataManager {
         }
         
     }
+    
+    
+    func fetchUserData() -> [LoginData] {
+            let request: NSFetchRequest<LoginData> = LoginData.fetchRequest()
+            do {
+                return try context.fetch(request)
+            } catch {
+                print("Failed to fetch users: \(error)")
+                return []
+            }
+        }
     
     
 }

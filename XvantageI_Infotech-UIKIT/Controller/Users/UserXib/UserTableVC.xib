@@ -20,9 +20,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2S-JY-N9k">
                         <rect key="frame" x="5" y="5" width="383" height="120"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lnp-eC-uX2">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lnp-eC-uX2">
                                 <rect key="frame" x="10" y="10" width="100" height="100"/>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="JJX-U8-2L5"/>
                                     <constraint firstAttribute="width" constant="100" id="tNg-vd-YiN"/>
@@ -151,20 +151,30 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="deleteBtn" destination="VOd-gl-Fwl" id="XxP-4X-UVO"/>
+                <outlet property="deleteView" destination="OzU-sH-Xz0" id="Ef3-ee-mL9"/>
+                <outlet property="editBtn" destination="RfM-tp-vD2" id="U0M-Sj-zob"/>
+                <outlet property="editView" destination="dcj-rz-VFL" id="dbr-Fd-kKt"/>
+                <outlet property="emailLbl" destination="UH2-Hj-TaL" id="hRP-b2-Jbf"/>
+                <outlet property="nameLbl" destination="Id6-sD-FDm" id="aej-ea-TJm"/>
+                <outlet property="phonenoLbl" destination="6yk-Du-vkY" id="hjR-pY-VUW"/>
+                <outlet property="profileImg" destination="lnp-eC-uX2" id="etZ-cA-Gpe"/>
+            </connections>
             <point key="canvasLocation" x="138.1679389312977" y="19.718309859154932"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="icons8-delete-50" width="50" height="50"/>
         <image name="icons8-edit-50" width="50" height="50"/>
-        <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
