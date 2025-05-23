@@ -209,7 +209,7 @@
         <scene sceneID="7Mu-2A-Dd7">
             <objects>
                 <viewController storyboardIdentifier="UserListVC" id="Cl6-bk-MsO" customClass="UserListVC" customModule="XvantageI_Infotech_UIKIT" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jFa-UP-z6E">
+                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="jFa-UP-z6E">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -246,19 +246,37 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="130" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ymR-yU-yM4">
                                 <rect key="frame" x="0.0" y="162" width="393" height="622"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="622" id="06P-2p-oKU"/>
+                                </constraints>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qJQ-8t-FoT">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <viewLayoutGuide key="safeArea" id="uYW-xr-R8i"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.26905293367346939" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="p2t-o2-BPR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RHR-Wk-9tm" firstAttribute="top" secondItem="p2t-o2-BPR" secondAttribute="top" id="1DP-D8-bep"/>
+                            <constraint firstItem="qJQ-8t-FoT" firstAttribute="top" secondItem="jFa-UP-z6E" secondAttribute="top" id="8Jn-Fi-zIM"/>
+                            <constraint firstItem="ymR-yU-yM4" firstAttribute="top" secondItem="RHR-Wk-9tm" secondAttribute="bottom" id="IrK-OY-MKG"/>
                             <constraint firstItem="RHR-Wk-9tm" firstAttribute="trailing" secondItem="p2t-o2-BPR" secondAttribute="trailing" id="JdH-WF-uaL"/>
                             <constraint firstItem="ymR-yU-yM4" firstAttribute="leading" secondItem="p2t-o2-BPR" secondAttribute="leading" id="Plw-6Z-GbW"/>
                             <constraint firstItem="p2t-o2-BPR" firstAttribute="bottom" secondItem="ymR-yU-yM4" secondAttribute="bottom" id="SwG-bz-cuN"/>
+                            <constraint firstAttribute="bottom" secondItem="qJQ-8t-FoT" secondAttribute="bottom" id="ZQY-UH-MQZ"/>
                             <constraint firstItem="p2t-o2-BPR" firstAttribute="trailing" secondItem="ymR-yU-yM4" secondAttribute="trailing" id="eWQ-Ff-BFt"/>
-                            <constraint firstItem="ymR-yU-yM4" firstAttribute="top" secondItem="RHR-Wk-9tm" secondAttribute="bottom" id="ohi-32-sSR"/>
+                            <constraint firstItem="qJQ-8t-FoT" firstAttribute="trailing" secondItem="ymR-yU-yM4" secondAttribute="trailing" id="kA7-Zt-Atw"/>
+                            <constraint firstItem="ymR-yU-yM4" firstAttribute="bottom" secondItem="jFa-UP-z6E" secondAttribute="bottom" constant="-68" id="mAy-Hg-lc9"/>
+                            <constraint firstItem="qJQ-8t-FoT" firstAttribute="leading" secondItem="ymR-yU-yM4" secondAttribute="leading" id="mQe-9E-POT"/>
                             <constraint firstItem="RHR-Wk-9tm" firstAttribute="leading" secondItem="p2t-o2-BPR" secondAttribute="leading" id="rTM-oZ-xVP"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="qJQ-8t-FoT"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="backBtn" destination="zPW-4e-lY5" id="Y8n-xh-crV"/>
@@ -267,7 +285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1xJ-vT-NbA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="795" y="8"/>
+            <point key="canvasLocation" x="794.6564885496183" y="7.746478873239437"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o8p-1c-bq5">
