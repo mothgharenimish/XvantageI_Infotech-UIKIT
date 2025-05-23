@@ -21,15 +21,15 @@ class UserListVC: UIViewController {
     
     var userlist_data : [LoginData] = []
     let coreDataManager = CoreDataManager()
-
+    
     weak var userdelegate : UserListDataPass?
-
+    
     
     //MARK: -View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        
         self.userstblView.dataSource = self
         self.userstblView.delegate = self
         fetchAndReloadData()
@@ -43,7 +43,7 @@ class UserListVC: UIViewController {
     func fetchAndReloadData() {
         userlist_data = coreDataManager.fetchUserData()
         for user in userlist_data {
-          print("The Users Data \(user)")
+            print("The Users Data \(user)")
         }
         userstblView.reloadData()
         
@@ -53,8 +53,20 @@ class UserListVC: UIViewController {
     //MARK: -Back IBAction 
     @IBAction func backAction(_ sender: UIButton) {
         
-        self.navigationController?.popViewController(animated: true)
-
+        if let targetVC = navigationController?.viewControllers.first(where: { $0 is LoginVC }) as? LoginVC {
+            
+            
+            targetVC.nametxtField.text = ""
+            targetVC.emailtxtField.text = ""
+            targetVC.phonenotxtField.text = ""
+            targetVC.profileImg.image = "" as? UIImage
+            
+            
+            navigationController?.popToViewController(targetVC, animated: true)
+            
+            
+        }
+        
     }
     
     
@@ -68,18 +80,11 @@ class UserListVC: UIViewController {
             
             
             self.userlist_data.remove(at: sender.tag)
-
+            
             self.userstblView.reloadData()
         })
         
-        let userdata = self.userlist_data[sender.tag]
-        print("Print the user data \(userdata)")
-        coreDataManager.deleteUserData(user:userdata)
         
-        
-        userlist_data.remove(at: sender.tag)
-
-        self.userstblView.reloadData()
         
     }
     
@@ -88,19 +93,24 @@ class UserListVC: UIViewController {
         
         
         let selectedData = userlist_data[sender.tag]
-               self.userdelegate?.userData(users: selectedData)
-               
-               if let targetVC = navigationController?.viewControllers.first(where: { $0 is LoginVC }) as? LoginVC {
-                   targetVC.isEditMode = true
-                   targetVC.usertoEdit = selectedData
-                   navigationController?.popToViewController(targetVC, animated: true)
-               }
-           }
-
+        
+        if let loginVC = navigationController?.viewControllers.first(where: { $0 is LoginVC }) as? LoginVC {
+            loginVC.isEditMode = true
+            loginVC.usertoEdit = selectedData
+            
+            loginVC.nametxtField.text = selectedData.name
+            loginVC.emailtxtField.text = selectedData.email
+            loginVC.phonenotxtField.text = selectedData.phonenumber
+            if let imgData = selectedData.profileimg {
+                loginVC.profileImg.image = UIImage(data: imgData)
+            }
+            
+            navigationController?.popToViewController(loginVC, animated: true)
+        }
         
     }
     
-
+}
 
 
 //MARK: -UITableViewDelegate
