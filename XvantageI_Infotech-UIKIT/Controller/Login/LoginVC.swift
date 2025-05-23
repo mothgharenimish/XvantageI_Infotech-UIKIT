@@ -55,6 +55,17 @@ class LoginVC: UIViewController, UIImagePickerControllerDelegate & UINavigationC
         
         
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        self.nametxtField.text = ""
+        self.emailtxtField.text = ""
+        self.phonenotxtField.text = ""
+        self.profileImg.image = UIImage(named: "")
+    }
     func userData(users: LoginData) {
         
         if isEditMode , let user = usertoEdit {
