@@ -18,11 +18,15 @@ class UserTableVC: UITableViewCell {
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var deleteView: UIView!
     @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var userView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.profileImg.layer.cornerRadius = self.profileImg.frame.size.height / 2
+        self.editView.setCornerRadiusView(9.0)
+        self.deleteView.setCornerRadiusView(9.0)
+        self.userView.setCornerRadiusView(9.0)
 
     }
 

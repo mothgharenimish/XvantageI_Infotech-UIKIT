@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
-class LoginVC: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class LoginVC: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate,UserListDataPass{
+   
+    
     
     //MARK: -IBOutlet
     @IBOutlet weak var profileImg: UIImageView!
@@ -22,11 +25,29 @@ class LoginVC: UIViewController, UIImagePickerControllerDelegate & UINavigationC
     
     let coredatamanager = CoreDataManager()
     
+    var isEditMode = false
+    var usertoEdit : LoginData?
+
+    
     //MARK: -View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.profileImg.layer.cornerRadius = self.profileImg.frame.size.height / 2
+        self.nameView.setCornerRadiusView(9.0)
+        nameView.layer.borderWidth = 1.0
+        nameView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        self.emailView.setCornerRadiusView(9.0)
+        emailView.layer.borderWidth = 1.0
+        emailView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        self.phoneView.setCornerRadiusView(9.0)
+        phoneView.layer.borderWidth = 1.0
+        phoneView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        self.saveBtn.setCornerRadiusBtn(9.0)
+        
         
         self.profileImg.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
@@ -34,7 +55,24 @@ class LoginVC: UIViewController, UIImagePickerControllerDelegate & UINavigationC
         
         
     }
-    
+    func userData(users: LoginData) {
+        
+        if isEditMode , let user = usertoEdit {
+            self.nametxtField.text = user.name
+            self.emailtxtField.text = user.email
+            self.phonenotxtField.text = user.phonenumber
+            self.profileImg.image =  UIImage(data: user.profileimg!)
+            
+            title = "Edit Order"
+            
+        }
+        
+        else {
+            
+            title = "Add the User"
+        }
+       
+    }
     
     @objc func imageTapped() {
           let picker = UIImagePickerController()
@@ -75,34 +113,45 @@ class LoginVC: UIViewController, UIImagePickerControllerDelegate & UINavigationC
         }
         
         
-         coredatamanager.SaveUserData(name: name, email: email, phoneno: phone, profileimg: profile, completion: { (success, message) in
-             
-             
+        if isEditMode {
+            
+            coredatamanager.updateUserData(user: usertoEdit!, newName: name, newEmail: email, newPhone: phone, newProfileImg: profile)
+        }
+        
+        else {
+            coredatamanager.SaveUserData(name: name, email: email, phoneno: phone, profileimg: profile, completion: { (success, message) in
+                
+                
+                
+            })
+            
+        }
              self.shownaviagtionAlert(title: "Sign In", message: "Data Successfully saved", completion: {
                  
                  let userViewController = self.storyboard!.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
+                 userViewController.userdelegate = self
                  self.navigationController!.pushViewController(userViewController, animated: true)
                  
              })
              
             
             
-            if success {
-                
-                let userdata = self.coredatamanager.fetchUserData()
-                
-                for user in userdata {
-                    
-                    print("Print the ussr data: \(user)")
-                }
-                
-            } else {
-                
-                print("The User data is not there")
-            }
-            
-        })
-        
+//            if success {
+//                
+//                let userdata = self.coredatamanager.fetchUserData()
+//                
+//                for user in userdata {
+//                    
+//                    print("Print the ussr data: \(user)")
+//                }
+//                
+//            } else {
+//                
+//                print("The User data is not there")
+//            }
+//            
+//        })
+//        
 
         
         

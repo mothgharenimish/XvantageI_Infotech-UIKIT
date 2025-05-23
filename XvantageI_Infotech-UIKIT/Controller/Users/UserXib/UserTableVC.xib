@@ -160,6 +160,7 @@
                 <outlet property="nameLbl" destination="Id6-sD-FDm" id="aej-ea-TJm"/>
                 <outlet property="phonenoLbl" destination="6yk-Du-vkY" id="hjR-pY-VUW"/>
                 <outlet property="profileImg" destination="lnp-eC-uX2" id="etZ-cA-Gpe"/>
+                <outlet property="userView" destination="z2S-JY-N9k" id="zUt-Gt-OQj"/>
             </connections>
             <point key="canvasLocation" x="138.1679389312977" y="19.718309859154932"/>
         </tableViewCell>

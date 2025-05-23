@@ -67,4 +67,37 @@ class CoreDataManager {
         }
     
     
+       func updateUserData(user: LoginData, newName: String, newEmail: String, newPhone: String, newProfileImg: UIImage?) {
+           user.name = newName
+           user.email = newEmail
+           user.phonenumber = newPhone
+           
+           if let imageData = newProfileImg {
+               if let pngImage = imageData.pngData() {
+                   user.profileimg = pngImage
+               } else if let jpgImage = imageData.jpegData(compressionQuality: 0.1) {
+                   user.profileimg = jpgImage
+               }
+           }
+           
+           do {
+               try context.save()
+//               completion(true, "User data updated successfully.")
+           } catch {
+               print("Failed to update user: \(error)")
+//               completion(false, "An error occurred while updating user data.")
+           }
+       }
+       
+       func deleteUserData(user: LoginData) {
+           context.delete(user)
+           do {
+               try context.save()
+//               completion(true, "User deleted successfully.")
+           } catch {
+               print("Failed to delete user: \(error)")
+//               completion(false, "An error occurred while deleting user.")
+           }
+       }
+    
 }

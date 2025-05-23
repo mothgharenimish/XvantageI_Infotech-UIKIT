@@ -7,6 +7,12 @@
 
 import UIKit
 
+
+protocol UserListDataPass : AnyObject {
+    
+    func userData(users : LoginData)
+}
+
 class UserListVC: UIViewController {
     
     //MARK: -IBOutlet
@@ -16,7 +22,8 @@ class UserListVC: UIViewController {
     var userlist_data : [LoginData] = []
     let coreDataManager = CoreDataManager()
 
-    
+    weak var userdelegate : UserListDataPass?
+
     
     //MARK: -View Life Cycle
     override func viewDidLoad() {
@@ -46,11 +53,43 @@ class UserListVC: UIViewController {
     //MARK: -Back IBAction 
     @IBAction func backAction(_ sender: UIButton) {
         
+        self.navigationController?.popViewController(animated: true)
+
+    }
+    
+    
+    @objc func deletedtapped(sender : UIButton) {
+        
+        let userdata = self.userlist_data[sender.tag]
+        print("Print the user data \(userdata)")
+        coreDataManager.deleteUserData(user:userdata)
+        
+        
+        userlist_data.remove(at: sender.tag)
+
+        self.userstblView.reloadData()
+        
+    }
+    
+    
+    @objc func edittapped(sender : UIButton) {
+        
+        
+        let selectedData = userlist_data[sender.tag]
+               self.userdelegate?.userData(users: selectedData)
+               
+               if let targetVC = navigationController?.viewControllers.first(where: { $0 is LoginVC }) as? LoginVC {
+                   targetVC.isEditMode = true
+                   targetVC.usertoEdit = selectedData
+                   navigationController?.popToViewController(targetVC, animated: true)
+               }
+           }
+
         
     }
     
 
-}
+
 
 //MARK: -UITableViewDelegate
 extension UserListVC : UITableViewDelegate {
@@ -70,6 +109,14 @@ extension UserListVC : UITableViewDataSource{
         cell.emailLbl.text = userlist_data[indexPath.row].email
         cell.phonenoLbl.text = userlist_data[indexPath.row].phonenumber
         cell.profileImg.image = UIImage(data: userlist_data[indexPath.row].profileimg!)
+        
+        cell.deleteBtn.tag = indexPath.row
+        cell.deleteBtn.addTarget(self, action: #selector(deletedtapped), for: .touchUpInside)
+        
+        cell.editBtn.tag = indexPath.row
+        cell.editBtn.addTarget(self, action: #selector(edittapped), for: .touchUpInside)
+        
+        
         return cell
     }
     

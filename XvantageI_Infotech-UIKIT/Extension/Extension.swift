@@ -28,3 +28,22 @@ extension UIViewController {
     
     
 }
+
+
+extension UIView {
+    
+    func setCornerRadiusView(_ radius: CGFloat) {
+           self.layer.cornerRadius = radius
+       }
+    
+}
+
+
+extension UIButton {
+    
+    
+    func setCornerRadiusBtn(_ radius: CGFloat) {
+           self.layer.cornerRadius = radius
+       }
+    
+}
