@@ -60,6 +60,18 @@ class UserListVC: UIViewController {
     
     @objc func deletedtapped(sender : UIButton) {
         
+        
+        shownaviagtionAlert(title: "User Data", message: "Are you sure you want delete the user data", completion: {
+            let userdata = self.userlist_data[sender.tag]
+            print("Print the user data \(userdata)")
+            self.coreDataManager.deleteUserData(user:userdata)
+            
+            
+            self.userlist_data.remove(at: sender.tag)
+
+            self.userstblView.reloadData()
+        })
+        
         let userdata = self.userlist_data[sender.tag]
         print("Print the user data \(userdata)")
         coreDataManager.deleteUserData(user:userdata)

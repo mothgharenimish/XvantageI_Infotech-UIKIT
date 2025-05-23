@@ -26,6 +26,26 @@ extension UIViewController {
     }
     
     
+    func isValidName(_ name: String) -> Bool {
+        let nameRegex = "^[A-Za-z ]{2,}$"
+        let namePredicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
+        return namePredicate.evaluate(with: name)
+    }
+
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
+    }
+
+    func isValidPhone(_ phone: String) -> Bool {
+        let phoneRegex = "^[6-9]\\d{9}$"
+        let phonePredicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+        return phonePredicate.evaluate(with: phone)
+    }
+
+    
+    
     
 }
 

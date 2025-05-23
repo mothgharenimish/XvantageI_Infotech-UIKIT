@@ -112,6 +112,21 @@ class LoginVC: UIViewController, UIImagePickerControllerDelegate & UINavigationC
             return
         }
         
+        if !isValidName(name) {
+                showAlert(message: "Please enter a valid name (letters only)", title: "Validation Error")
+                return
+            }
+            
+            if !isValidEmail(email) {
+                showAlert(message: "Please enter a valid email address", title: "Validation Error")
+                return
+            }
+            
+            if !isValidPhone(phone) {
+                showAlert(message: "Please enter a valid 10-digit phone number", title: "Validation Error")
+                return
+            }
+        
         
         if isEditMode {
             
@@ -121,7 +136,19 @@ class LoginVC: UIViewController, UIImagePickerControllerDelegate & UINavigationC
         else {
             coredatamanager.SaveUserData(name: name, email: email, phoneno: phone, profileimg: profile, completion: { (success, message) in
                 
-                
+                if success {
+                    
+                    let userdata = self.coredatamanager.fetchUserData()
+                    
+                    for user in userdata {
+                        
+                        print("Print the ussr data: \(user)")
+                    }
+                    
+                } else {
+                    
+                    print("The User data is not there")
+                }
                 
             })
             
@@ -136,22 +163,10 @@ class LoginVC: UIViewController, UIImagePickerControllerDelegate & UINavigationC
              
             
             
-//            if success {
-//                
-//                let userdata = self.coredatamanager.fetchUserData()
-//                
-//                for user in userdata {
-//                    
-//                    print("Print the ussr data: \(user)")
-//                }
-//                
-//            } else {
-//                
-//                print("The User data is not there")
-//            }
-//            
-//        })
-//        
+       
+            
+    
+        
 
         
         
